@@ -1,0 +1,46 @@
+<%- include('partials/header') %>
+<section class="w-[100%] h-[100vh] bg-cover" style="background-image: url('public/img/client.jpg');">
+    <nav class="w-[100%] h-[5vh] bg-black opacity-80 flex justify-between items-center">
+        <a href="/"><i class="fa-solid fa-mountain text-white text-[20px] ml-5"></i></a>
+        <div class="w-[500px] flex justify-around text-[20px] text-white font-bold">
+            <select name="select" id="" onchange="location = this.value" class="w-[200px] text-black">
+                <option value="/all">Todos</option>
+                <option value="/add">Añadir</option>
+            </select>
+            <p>Profile</p>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+        <% try { %>
+            <% if (data.objects.length != 0) { %>
+                <div class="w-[100%] h-[90vh] flex flex-wrap justify-around items-start">
+                        <% data.objects.forEach(element => { %>
+                            <div class="w-[400px] h-[400px] flex flex-col justify-between rounded bg-white">
+                                <img src="<%= element.picture %>" alt="" class="w-[100%] h-[250px]">
+                                <div class="flex flex-col">
+                                    <h3 class=" font-bold text-[20px]"><%= element.title %> </h3>
+                                    <p class="text-black"><%= element.description %></p>
+                                </div>
+                                <div class="flex items-center justify-end w-[100%] p-2">
+                                    <a href="/delete/<%= element._id %>" class="p-2 rounded bg-red-600 text-white font-bold">Borrar</a>
+                                    <a href="/update/<%= element._id %>" class="p-2 rounded bg-green-600 text-white font-bold ml-5">Actualizar</a>
+
+                                </div>
+
+                            </div>
+                        <% }) %>
+                </div>
+            <% }else{ %>
+                <div class="w-[100%] h-[90vh] flex flex-col justify-center items-center">
+                    <h1 class="text-[35px] text-white font-bold">No hay objetos añadidos</h1>
+                    <a href="/add" class="bg-blue-700 p-3 text-white font-bold rounded">AÑADIR</a>
+                </div>
+            <% } %>
+        <% }catch(e){ %>
+            <% console.log(e) %>
+            <div class="w-[100%] h-[90vh] flex flex-col justify-center items-center">
+                <h1 class="text-[35px] text-white font-bold">No hay objetos añadidos</h1>
+                <a href="/add" class="bg-blue-700 p-3 text-white font-bold rounded">AÑADIR</a>
+            </div>
+        <% } %>
+<%- include('partials/footer') %>

@@ -1,0 +1,33 @@
+<%- include('partials/header') %>
+<section class="w-[100%] h-[100vh] bg-violet-900" >
+    <%- include('partials/nav',{rol:data.rol}) %>
+                <div class="w-[100%] h-[90vh] flex flex-col justify-center items-center">
+                    <form  action="/update/<%=  data.object._id%>" method="post" class="bg-black  w-[600px] h-[500px] rounded-lg flex flex-col items-center justify-around">
+                        <h1 class="text-white text-[50px] font-bold">Actualizar objeto</h1>
+                        <div style="display: flex; flex-direction: column; justify-content: space-around;">
+                            <label for="">Titulo</label>
+                            <input type="text" name="title" id="" value="<%= data.object.title %>" placeholder="Titulo de la imagen" style="border: 1px solid black; outline: none; width: 300px; padding: 5px;border-radius: 10px;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; justify-content: space-around;">
+                            <label for="">Descripcion</label>
+                            <input type="text" name="description" id="" value="<%= data.object.description %>" placeholder="Descripcion de la imagen" style="border: 1px solid black; outline: none; width: 300px; padding: 5px;border-radius: 10px;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; justify-content: space-around;">
+                            <label for="">Imagen</label>
+                            <input type="text" name="picture" id="" value="<%= data.object.picture %>" placeholder="Url de la imagen" style="border: 1px solid black; outline: none; width: 300px; padding: 5px; border-radius: 10px;">
+                        </div>
+                        <button class="text-white font-bold bg-blue-800 rounded-lg p-2 w-[150px]" type="submit">Añadir</button>
+                    </form>
+                    <% try { %>
+                        <% if (error) { %>
+                            <div class="flex flex-col w-[100%] items-center">
+                                <% error.forEach(element => { %>
+                                    <p class="text-red-600 font-bold text-[20px]"><%= element.msg %> </p>
+                                <% }) %>
+                            </div>
+                        <% } %>
+                    <% }catch(e){ %>
+                        <% console.log(e) %>
+                    <% } %>
+                </div>
+<%- include('partials/footer') %>

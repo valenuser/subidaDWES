@@ -1,0 +1,43 @@
+<%- include('partials/header') %>
+<section class="w-[100%] h-[100vh] bg-cover" style="background-image: url('public/img/client.jpg');">
+    <nav class="w-[100%] h-[5vh] bg-black opacity-80 flex justify-between items-center">
+        <a href="/"><i class="fa-solid fa-mountain text-white text-[20px] ml-5"></i></a>
+        <div class="w-[500px] flex justify-around text-[20px] text-white font-bold">
+            <select name="select" id="" onchange="location = this.value" class="w-[200px] text-black">
+                <option value="/all">Todos</option>
+                <option value="/add" selected>Añadir</option>
+            </select>
+            <p>Profile</p>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+                <div class="w-[100%] h-[90vh] flex flex-col justify-center items-center">
+                    <form  action="/add" method="post" class="bg-black  w-[600px] h-[500px] rounded-lg flex flex-col items-center justify-around">
+                        <h1 class="text-white text-[50px] font-bold">Añadir objeto</h1>
+                        <div style="display: flex; flex-direction: column; justify-content: space-around;">
+                            <label for="">Titulo</label>
+                            <input type="text" name="title" id="" placeholder="Titulo de la imagen" style="border: 1px solid black; outline: none; width: 300px; padding: 5px;border-radius: 10px;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; justify-content: space-around;">
+                            <label for="">Descripcion</label>
+                            <input type="text" name="description" id="" placeholder="Descripcion de la imagen" style="border: 1px solid black; outline: none; width: 300px; padding: 5px;border-radius: 10px;">
+                        </div>
+                        <div style="display: flex; flex-direction: column; justify-content: space-around;">
+                            <label for="">Imagen</label>
+                            <input type="text" name="picture" id="" placeholder="Url de la imagen" style="border: 1px solid black; outline: none; width: 300px; padding: 5px; border-radius: 10px;">
+                        </div>
+                        <button class="text-white font-bold bg-blue-800 rounded-lg p-2 w-[150px]" type="submit">Añadir</button>
+                    </form>
+                    <% try { %>
+                        <% if (error) { %>
+                            <div class="flex flex-col w-[100%] items-center">
+                                <% error.forEach(element => { %>
+                                    <p class="text-red-600 font-bold text-[20px]"><%= element.msg %> </p>
+                                <% }) %>
+                            </div>
+                        <% } %>
+                    <% }catch(e){ %>
+                        <% console.log(e) %>
+                    <% } %>
+                </div>
+<%- include('partials/footer') %>

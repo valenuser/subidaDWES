@@ -33,9 +33,9 @@ app.use(session({
 //routes
 
 app.use('/',require('./routes/index'))
-
-// app.use('/objetos',require('./routes/products'))
-// app.use('/usuarios',require('./routes/usuarios'))
+app.use((req,res)=>{
+    res.render('error')
+})
 
 const port = process.env.PORT || 3000
 app.listen( port)

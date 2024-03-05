@@ -1,0 +1,24 @@
+<%- include('partials/header',) %>
+<section class="w-[100%] h-[100vh] bg-cover" style="background-image: url('public/img/inicio.jpeg');">
+<% try { %>
+    <% if (data.rol == 'client') { %>
+        <%- include('partials/nav',{rol:data.rol}) %>
+        <div class="w-[100%] h-[90vh] flex flex-col justify-center items-center">
+            <h class="text-[50px] text-white font-bold">Welcome <%= data.name%></h>
+            <a href="/login" class="bg-blue-700 p-3 text-white font-bold rounded">GUARDA TU COLECCION</a>
+        </div>
+    <% }else if(data.rol == 'admin') {%>
+        <%- include('partials/nav',{rol:data.rol}) %>
+        <div class="w-[100%] h-[90vh] flex flex-col justify-center items-center">
+            <h class="text-[50px] text-white font-bold">Welcome <%= data.name%></h>
+            <a href="/login" class="bg-blue-700 p-3 text-white font-bold rounded">GUARDA TU COLECCION</a>
+        </div>
+    <% } %> 
+<% }catch(e){ %>
+    <%- include('partials/nav') %>
+    <div class="w-[100%] h-[90vh] flex flex-col justify-center items-center">
+        <h1 class="text-[50px] text-white font-bold">Welcome to the page</h1>
+        <a href="/login" class="bg-blue-700 p-3 text-white font-bold rounded">EMPEZEMOS</a>
+    </div>
+<% } %>
+<%- include('partials/footer') %>
